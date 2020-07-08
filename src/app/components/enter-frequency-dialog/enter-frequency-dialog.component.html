@@ -1,0 +1,25 @@
+<form (ngSubmit)="onSubmit()">
+  <h1 mat-dialog-title>Hi there!</h1>
+  <div mat-dialog-content>
+    <!-- Please enter a frequency in seconds -->
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        placeholder="Please enter a frequency"
+        type="number"
+        [formControl]="frequency"
+      />
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="frequency.invalid"
+      mat-button
+    >
+      Complete
+    </button>
+  </div>
+</form>
