@@ -17,6 +17,10 @@
     >
       Submit
     </button>
+
+    <ng-container *ngIf="rawNumbers.length">
+      "{{ rawNumbers[rawNumbers.length - 1] }}" submitted successfully!
+    </ng-container>
   </form>
 
   <button style="margin-right: 1rem;" mat-icon-button (click)="togglePlay()">

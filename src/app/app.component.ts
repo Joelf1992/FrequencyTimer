@@ -41,6 +41,9 @@ export class AppComponent implements OnInit {
   }
 
   private startTimer(duration: number) {
+    /*
+      This would have been nicer as a RXJS interval but ran out of time.
+    */
     setInterval(() => {
       if (!this.isPaused && !this.isDone) {
         if (this.currentSnackBarRef) {
@@ -62,6 +65,7 @@ export class AppComponent implements OnInit {
 
   public togglePlay() {
     this.isPaused = !this.isPaused;
+    // close message if it's currently showing
     if (this.isPaused && this.currentSnackBarRef) {
       this.currentSnackBarRef.dismiss();
     }
@@ -78,9 +82,10 @@ export class AppComponent implements OnInit {
       return;
     }
     this.rawNumbers.push(newNumber);
-    this.currentOccurences = this.calculateOccurenceService.calculateOccurence(
-      this.rawNumbers
-    );
+    // this function mutates the array so we pass a fresh copy
+    this.currentOccurences = this.calculateOccurenceService.calculateOccurence([
+      ...this.rawNumbers,
+    ]);
     if (this.fibonacciService.isInFirst1000FibonacciNumbers(newNumber)) {
       window.alert("FIB");
     }
